@@ -6,9 +6,10 @@ class HomeDrawer extends StatelessWidget {
   Function onSideMenuItem;
   static const int home = 1;
   static const int ToDo = 2;
-  static const int settings = 3;
-  static const int AboutUs = 4;
-  static const int ContactUs = 5;
+  static const int SendTask = 3 ;
+  static const int settings = 4;
+  static const int AboutUs = 5;
+  static const int ContactUs = 6;
   HomeDrawer({required this.onSideMenuItem});
 
   @override
@@ -66,6 +67,29 @@ class HomeDrawer extends StatelessWidget {
                   ),
                   Text(
                     'ToDo',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  )
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          InkWell(
+            onTap: () {
+              onSideMenuItem(HomeDrawer.SendTask);
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  Icon(Icons.task_outlined, color: MyTheme.greyColor),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Send Task',
                     style: Theme.of(context).textTheme.titleMedium,
                   )
                 ],

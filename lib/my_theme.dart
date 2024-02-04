@@ -8,6 +8,9 @@ class MyTheme {
   static Color whiteColor = Color(0xffFFFFFF);
   static Color blackColor = Color(0xff383838);
   static Color greyColor = Color(0xff707070);
+  static Color redColor = Color(0xFFFE4A49);
+  static Color blueTask = Color(0xffBAE2F3);
+  static Color yelloTask = Color(0xffffff00);
 
 
   static ThemeData lightTheme = ThemeData(

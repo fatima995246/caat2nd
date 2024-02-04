@@ -1,3 +1,4 @@
+import 'package:caatsec/todo_tab/task_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,10 @@ class ToDoTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: MyTheme.greyColor);
+    return Scaffold(
+      body: ListView.builder(itemBuilder: (context , index){
+        return TaskWidget();
+      }),
+    );
   }
 }
