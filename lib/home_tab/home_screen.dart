@@ -1,3 +1,4 @@
+import 'package:caatsec/send_task/send_task_tab.dart';
 import 'package:caatsec/settings/settings_tab.dart';
 import 'package:caatsec/todo_tab/to_do_tab.dart';
 import 'package:flutter/cupertino.dart';
@@ -51,7 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ? AboutUsTab()
                     : selectedMenuItem == HomeDrawer.ContactUs
                         ? ContactUsTab()
-                        : HomeTab());
+                        : selectedMenuItem == HomeDrawer.SendTask
+                           ? SendTaskTab()
+                           : HomeTab());
   }
 
   int selectedMenuItem = HomeDrawer.home;

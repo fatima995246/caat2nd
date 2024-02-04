@@ -1,4 +1,5 @@
 import 'package:caatsec/my_theme.dart';
+import 'package:caatsec/todo_tab/task_widget.dart';
 import 'package:caatsec/settings/settings_tab.dart';
 import 'package:caatsec/todo_tab/to_do_tab.dart';
 import 'package:caatsec/signup/sign_up.dart';
@@ -34,7 +35,9 @@ class MyApp extends StatelessWidget {
         SignUPScreen.routeName: (context) => SignUPScreen(),
         SettingsTab.routeName: (context) => SettingsTab(),
         HomeScreen.routeName: (context) => HomeScreen(),
-        ToDoTab.routeName: (context) => ToDoTab()
+        ToDoTab.routeName: (context) => ToDoTab(),
+
+
       },
       theme: MyTheme.lightTheme,
     );
