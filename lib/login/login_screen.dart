@@ -1,10 +1,12 @@
 import 'package:caatsec/signup/sign_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../components/custom_text_form_field.dart';
 import '../home_tab/home_screen.dart';
 import '../my_theme.dart';
+import '../providers/app_config_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = "login";
@@ -22,8 +24,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Scaffold(
-        backgroundColor: MyTheme.whiteColor,
+        backgroundColor: provider.isDarkMode()? MyTheme.primaryDarkColor: MyTheme.whiteColor,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -33,12 +36,15 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 30, left: 100, right: 100),
-                child: Image.asset('assets/images/helloicon.png'),
+                child: provider.isDarkMode()? Image.asset('assets/images/helloiconwhite.png'): Image.asset('assets/images/helloicon.png'),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: Text(' Enter Your Details below',
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    style:provider.isDarkMode()?Theme.of(context).textTheme.titleSmall!.copyWith(
+                        color: MyTheme.whiteColor,
+                        fontWeight: FontWeight.bold,):
+                        Theme.of(context).textTheme.titleSmall!.copyWith(
                           color: MyTheme.greyColor,
                           fontWeight: FontWeight.bold,
                         )),
@@ -117,24 +123,35 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(' Don’t Have Account?',
-                              style: Theme.of(context)
+                              style: provider.isDarkMode()? Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                  color: MyTheme.whiteColor,
+                                  fontWeight: FontWeight.bold,)
+                                  : Theme.of(context)
                                   .textTheme
                                   .titleMedium!
                                   .copyWith(
                                     color: MyTheme.greyColor,
                                     fontWeight: FontWeight.bold,
-                                  )),
+                              )),
                           TextButton(
                               onPressed: () {
                                 Navigator.of(context)
                                     .pushNamed(SignUPScreen.routeName);
                               },
                               child: Text(' Sign Up',
-                                  style: Theme.of(context)
+                                  style: provider.isDarkMode()? Theme.of(context)
                                       .textTheme
                                       .titleMedium!
                                       .copyWith(
-                                        color: MyTheme.blackColor,
+                                      color: MyTheme.whiteColor,
+                                      fontWeight: FontWeight.bold,) : Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .copyWith(
+                                        color: MyTheme.primaryDarkColor,
                                         fontWeight: FontWeight.bold,
                                       )))
                         ],

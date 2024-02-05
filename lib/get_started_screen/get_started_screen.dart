@@ -1,16 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../login/login_screen.dart';
 import '../my_theme.dart';
+import '../providers/app_config_provider.dart';
 
 class GetStartedScreen extends StatelessWidget {
   static const String routeName = "get_started";
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: MyTheme.blueColor,
+  Widget build(BuildContext context) {    var provider = Provider.of<AppConfigProvider>(context);
+
+  return Scaffold(
+        backgroundColor: provider.isDarkMode()? MyTheme.primaryDarkColor: MyTheme.primaryLightColor,
         body: Stack(children: [
           Padding(
             padding: const EdgeInsets.all(120),
@@ -22,9 +25,9 @@ class GetStartedScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 350),
-            child: Text("""               this CAAT aims to make audits more 
-                   efficient, accurate, and financially 
-                           accessible for companies.""",
+            child: Text("""       this CAAT aims to make audits more 
+         efficient, accurate, and financially 
+              accessible for companies.""",
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     color: MyTheme.whiteColor, fontWeight: FontWeight.bold)),
           ),

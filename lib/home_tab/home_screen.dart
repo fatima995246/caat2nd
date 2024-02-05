@@ -3,8 +3,10 @@ import 'package:caatsec/todo_tab/to_do_tab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import '../about_us_tab/aboutus_tab.dart';
 import '../contact_us_tab/contactus_tab.dart';
+import '../providers/app_config_provider.dart';
 import 'home_drawer.dart';
 import 'home_tab.dart';
 import '../login/login_screen.dart';
@@ -21,12 +23,12 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {var provider = Provider.of<AppConfigProvider>(context);
     return Scaffold(
         appBar: AppBar(
           systemOverlayStyle:
-              SystemUiOverlayStyle(statusBarColor: MyTheme.blueColor),
-          iconTheme: IconThemeData(color: MyTheme.whiteColor),
+              SystemUiOverlayStyle(statusBarColor: provider.isDarkMode()? MyTheme.primaryDarkColor: MyTheme.whiteColor,),
+          iconTheme: IconThemeData(color: provider.isDarkMode()? MyTheme.primaryDarkColor: MyTheme.whiteColor),
           centerTitle: true,
           title:
               Text('AUDITHUB', style: Theme.of(context).textTheme.titleLarge),
@@ -35,10 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   Navigator.pushNamed(context, LoginScreen.routeName);
                 },
-                icon: Icon(Icons.logout, color: MyTheme.whiteColor))
+                icon: Icon(Icons.logout, color: provider.isDarkMode()? MyTheme.primaryDarkColor: MyTheme.whiteColor))
           ],
         ),
-        drawer: Drawer(
+        drawer: Drawer(backgroundColor: provider.isDarkMode()? MyTheme.primaryDarkColor: MyTheme.whiteColor,
           child: HomeDrawer(
             onSideMenuItem: onSideMenuItem,
           ),

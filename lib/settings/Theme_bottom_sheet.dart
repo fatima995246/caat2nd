@@ -1,31 +1,42 @@
-import 'package:caatsec/my_theme.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../providers/app_config_provider.dart';
 
-class LanguageBottomSheet extends StatefulWidget {
+class ThemeBottomSheet extends StatefulWidget {
   @override
-  State<LanguageBottomSheet> createState() => _LanguageBottomSheetState();
+  State<ThemeBottomSheet> createState() => _ThemeBottomSheetState();
 }
 
-class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
+class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        SizedBox(height: 10,),
-        InkWell(onTap: () { provider.changeLanguage('en');}, child:provider.appLanguage == 'en'
-            ? getSelectedItemWidget(AppLocalizations.of(context)!.english)
-            : getUnSelectedItemWidget(AppLocalizations.of(context)!.english),), SizedBox(height: 10,),
+      children: [  SizedBox(height: 10,),
         InkWell(
-          onTap: () { provider.changeLanguage('ar');},
-          child:provider.appLanguage == 'ar'
-              ? getSelectedItemWidget(AppLocalizations.of(context)!.arabic)
-              : getUnSelectedItemWidget(AppLocalizations.of(context)!.arabic),
-        )
+          onTap: () {
+           provider.changeTheme('dark');
+          },
+          //dark
+
+          child: provider.isDarkMode()
+           ? getSelectedItemWidget(AppLocalizations.of(context)!.dark)
+             : getUnSelectedItemWidget(AppLocalizations.of(context)!.dark),
+        ),  SizedBox(height: 10,),
+        InkWell(
+            onTap: () {
+             provider.changeTheme('light');
+            },
+            //light
+
+            child: provider.isDarkMode()
+                ? getUnSelectedItemWidget(AppLocalizations.of(context)!.light)
+                : getSelectedItemWidget(AppLocalizations.of(context)!.light)),
       ],
     );
   }
@@ -55,13 +66,9 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            text,
-            style: Theme.of(context)
-                .textTheme
-                .titleSmall!
-                .copyWith(color: Theme.of(context).primaryColor, fontSize: 14),
-          )
+          Text(text,
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).primaryColor, fontSize: 14)),
         ],
       ),
     );

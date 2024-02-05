@@ -3,18 +3,20 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class MyTheme {
-  static Color blueColor = Color(0xff3498DB);
+  static Color primaryLightColor = Color(0xff3498DB);
   static Color yelloColor = Color(0xffF39C12);
   static Color whiteColor = Color(0xffFFFFFF);
-  static Color blackColor = Color(0xff383838);
+  static Color primaryDarkColor = Color(0xff383838);
   static Color greyColor = Color(0xff707070);
+  static Color custom_green = Color(0xff18DAA3);
+  static Color backgroundColors = Colors.grey.shade100;
 
 
   static ThemeData lightTheme = ThemeData(
-      primaryColor: blueColor,
+      primaryColor: primaryLightColor,
       scaffoldBackgroundColor: whiteColor,
       appBarTheme: AppBarTheme(
-        backgroundColor: blueColor,
+        backgroundColor: primaryLightColor,
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           selectedItemColor: yelloColor,
@@ -23,7 +25,7 @@ class MyTheme {
           backgroundColor: Colors.transparent,
           elevation: 0),
       floatingActionButtonTheme:
-      FloatingActionButtonThemeData(backgroundColor: blueColor),
+      FloatingActionButtonThemeData(backgroundColor: primaryLightColor),
       bottomSheetTheme: const BottomSheetThemeData(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -33,8 +35,46 @@ class MyTheme {
     titleLarge:
         TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: whiteColor),
     titleMedium:
-        TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: blackColor),
+        TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: primaryDarkColor),
     titleSmall:
-        TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: blackColor),
+        TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: primaryDarkColor),
   ));
+  static ThemeData darkTheme = ThemeData(
+      primaryColor: primaryDarkColor,
+      scaffoldBackgroundColor: primaryDarkColor,
+      appBarTheme: AppBarTheme(
+        backgroundColor: primaryLightColor,
+        iconTheme: IconThemeData(color: primaryDarkColor),
+      ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          selectedItemColor: primaryLightColor,
+          unselectedItemColor: whiteColor,
+          showUnselectedLabels: false,
+          backgroundColor: Colors.transparent,
+          elevation: 0),
+      floatingActionButtonTheme:
+      FloatingActionButtonThemeData(backgroundColor: primaryLightColor),
+      bottomSheetTheme: BottomSheetThemeData(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(15),
+              ))),
+      textTheme: TextTheme(
+        titleLarge: TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+          color: primaryDarkColor,
+        ),
+        titleMedium: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: whiteColor,
+        ),
+        titleSmall: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+          color: whiteColor,
+        ),
+      ));
 }

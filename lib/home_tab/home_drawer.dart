@@ -1,6 +1,9 @@
 import 'package:caatsec/my_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/app_config_provider.dart';
 
 class HomeDrawer extends StatelessWidget {
   Function onSideMenuItem;
@@ -12,13 +15,13 @@ class HomeDrawer extends StatelessWidget {
   HomeDrawer({required this.onSideMenuItem});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {var provider = Provider.of<AppConfigProvider>(context);
     return Container(
       child: Column(
         children: [
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(
-              color: MyTheme.blueColor,
+              color: MyTheme.primaryLightColor,
             ),
             accountName: Text('fatma sayed'),
             accountEmail: Text('fatmasayed@gmail.com'),
@@ -26,7 +29,7 @@ class HomeDrawer extends StatelessWidget {
               backgroundImage: AssetImage('assets/images/user.jpg'),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           InkWell(
@@ -37,8 +40,8 @@ class HomeDrawer extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 children: [
-                  Icon(Icons.home_outlined, color: MyTheme.greyColor),
-                  SizedBox(
+                  Icon(Icons.home_outlined, color:provider.isDarkMode()?MyTheme.whiteColor:MyTheme.greyColor),
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
@@ -49,7 +52,7 @@ class HomeDrawer extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           InkWell(
@@ -60,8 +63,8 @@ class HomeDrawer extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 children: [
-                  Icon(Icons.task_outlined, color: MyTheme.greyColor),
-                  SizedBox(
+                  Icon(Icons.task_outlined, color: provider.isDarkMode()?MyTheme.whiteColor:MyTheme.greyColor),
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
@@ -72,7 +75,7 @@ class HomeDrawer extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           InkWell(
@@ -83,8 +86,8 @@ class HomeDrawer extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 children: [
-                  Icon(Icons.settings_outlined, color: MyTheme.greyColor),
-                  SizedBox(
+                  Icon(Icons.settings_outlined, color: provider.isDarkMode()?MyTheme.whiteColor:MyTheme.greyColor),
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
@@ -95,7 +98,7 @@ class HomeDrawer extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           InkWell(
@@ -107,19 +110,19 @@ class HomeDrawer extends StatelessWidget {
               child: Row(
                 children: [
                   Icon(Icons.supervisor_account_outlined,
-                      color: MyTheme.greyColor),
-                  SizedBox(
+                      color: provider.isDarkMode()?MyTheme.whiteColor:MyTheme.greyColor),
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
-                    ' About Us',
+                    ' About',
                     style: Theme.of(context).textTheme.titleMedium,
                   )
                 ],
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           InkWell(
@@ -130,8 +133,8 @@ class HomeDrawer extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 children: [
-                  Icon(Icons.support_agent_outlined, color: MyTheme.greyColor),
-                  SizedBox(
+                  Icon(Icons.support_agent_outlined, color: provider.isDarkMode()?MyTheme.whiteColor:MyTheme.greyColor),
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(

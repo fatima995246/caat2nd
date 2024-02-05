@@ -1,10 +1,12 @@
 import 'package:caatsec/signup/sign_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../components/custom_text_form_field.dart';
 import '../home_tab/home_screen.dart';
 import '../login/login_screen.dart';
 import '../my_theme.dart';
+import '../providers/app_config_provider.dart';
 
 class SignUPScreen extends StatefulWidget {
   static const String routeName = 'Sign Up';
@@ -22,9 +24,9 @@ class _SignUPScreenState extends State<SignUPScreen> {
   var passwordController = TextEditingController(text: '123456');
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {var provider = Provider.of<AppConfigProvider>(context);
     return Scaffold(
-        backgroundColor: MyTheme.whiteColor,
+        backgroundColor: provider.isDarkMode()? MyTheme.primaryDarkColor: MyTheme.whiteColor,
         body: SingleChildScrollView(
           child: Column(children: [
             Padding(
@@ -154,23 +156,36 @@ class _SignUPScreenState extends State<SignUPScreen> {
                       children: [
                         Text('Have Account?',
                             style:
-                                Theme.of(context).textTheme.titleMedium!.copyWith(
-                                      color: MyTheme.greyColor,
-                                      fontWeight: FontWeight.bold,
-                                    )),
+                            provider.isDarkMode()? Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
+                              color: MyTheme.whiteColor,
+                              fontWeight: FontWeight.bold,) : Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
+                              color: MyTheme.greyColor,
+                              fontWeight: FontWeight.bold,
+                            )),
                         TextButton(
                             onPressed: () {
                               Navigator.of(context)
                                   .pushNamed(LoginScreen.routeName);
                             },
                             child: Text('  Sign In',
-                                style: Theme.of(context)
+                                style:provider.isDarkMode()? Theme.of(context)
                                     .textTheme
                                     .titleMedium!
                                     .copyWith(
-                                      color: MyTheme.blackColor,
-                                      fontWeight: FontWeight.bold,
-                                    )))
+                                  color: MyTheme.whiteColor,
+                                  fontWeight: FontWeight.bold,) : Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(
+                                  color: MyTheme.primaryDarkColor,
+                                  fontWeight: FontWeight.bold,
+                                )))
                       ],
                     )
                   ],
